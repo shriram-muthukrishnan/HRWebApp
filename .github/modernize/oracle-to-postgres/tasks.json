@@ -18,6 +18,13 @@
         "passBuild": "true",
         "generateNewUnitTests": "false",
         "passUnitTests": "true"
+      },
+      "status": "success",
+      "taskSummary": "Migrated Oracle-oriented JDBC/data-access implementation to PostgreSQL with Azure Managed Identity defaults, updated SQL/resources, and validated build/tests via task execution.",
+      "successCriteriaStatus": {
+        "passBuild": "true",
+        "generateNewUnitTests": "true",
+        "passUnitTests": "true"
       }
     },
     {
@@ -39,6 +46,14 @@
       "successCriteria": {
         "passBuild": "true",
         "generateNewUnitTests": "false",
+        "passUnitTests": "true"
+      },
+      "cveReport": ".github/modernize/oracle-to-postgres/002-security-validate-cves-and-fix/final-cve-report.json",
+      "status": "success",
+      "taskSummary": "Remediated dependency CVEs by upgrading PostgreSQL and Azure identity dependencies, pinning secure Netty BOM, and producing a final zero-vulnerability report.",
+      "successCriteriaStatus": {
+        "passBuild": "true",
+        "generateNewUnitTests": "true",
         "passUnitTests": "true"
       }
     }
