@@ -1,21 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package com.oracle.jdbc.samples.entity;
+package com.hrwebapp.entity;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 
-/**
- * Employee entity class - compatible with both Oracle and PostgreSQL databases.
- * Migrated from Oracle to PostgreSQL: No Oracle-specific code detected. 
- * Uses standard JDBC ResultSet which is database-neutral.
- * 
- * @author nirmala.sundarappa@oracle.com
- */
 public class Employee {
 
   private int Employee_Id;
@@ -91,6 +78,4 @@ public class Employee {
   public void setSalary(int Salary) {
     this.Salary = Salary;
   }
-
-
 }
