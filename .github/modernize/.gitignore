@@ -1,1 +1,3 @@
 *!assessment/
+# Per-run CCA job state (regenerated each plan execute)
+**/cca-job-status.json
