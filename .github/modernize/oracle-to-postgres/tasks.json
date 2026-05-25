@@ -1,0 +1,53 @@
+{
+  "$schema": "./tasks-schema.json",
+  "description": "Tasks template for modernization plan. Generate this file alongside plan.md to track individual migration tasks.",
+  "tasks": [
+    {
+      "type": "transform",
+      "id": "001-transform-migration-oracle-to-postgresql",
+      "description": "Migrate the HRWebApp database layer from Oracle Database to Azure Database for PostgreSQL Flexible Server, including JDBC driver, connection configuration, SQL syntax, and Oracle-specific features (data types, sequences, stored procedures/functions, operators).",
+      "reason": "User requested migration of the application database from Oracle to Azure Database for PostgreSQL Flexible Server to modernize the data tier and run on a managed Azure database service.",
+      "requirements": "Replace Oracle JDBC driver (ojdbc) and connection URLs with the PostgreSQL JDBC driver and Azure Database for PostgreSQL Flexible Server connection settings. Convert all Oracle-specific SQL (data types, sequences, ROWNUM/DUAL, NVL/DECODE, stored procedures, functions, triggers) found in Java sources and SQL/resource files to PostgreSQL-compatible equivalents. Preserve existing application behavior for all HR features. Use coding_notes.md guidance if present. Authentication to Azure Database for PostgreSQL Flexible Server should default to Microsoft Entra ID Managed Identity.",
+      "skills": [
+        {
+          "name": "migration-oracle-to-postgresql",
+          "location": "builtin"
+        }
+      ],
+      "successCriteria": {
+        "passBuild": "true",
+        "generateNewUnitTests": "false",
+        "passUnitTests": "true"
+      }
+    },
+    {
+      "type": "security",
+      "id": "002-security-validate-cves-and-fix",
+      "description": "Scan all project dependencies for known CVEs and remediate any identified vulnerabilities to ensure the application is secure before deployment.",
+      "reason": "Ensure the modernized application has no known dependency vulnerabilities after the Oracle-to-PostgreSQL migration.",
+      "requirements": "Upgrade vulnerable dependencies to the minimum patched version. If a CVE fix requires a major version upgrade, document the affected dependency, the current version, the upgraded major version, and the breaking change risk. Verify that the project builds and all tests pass after remediation.",
+      "environmentConfiguration": "Runtime environment established by previous tasks (Java 1.8). Build tool: Maven.",
+      "dependencies": [
+        "001-transform-migration-oracle-to-postgresql"
+      ],
+      "skills": [
+        {
+          "name": "validate-cves-and-fix",
+          "location": "builtin"
+        }
+      ],
+      "successCriteria": {
+        "passBuild": "true",
+        "generateNewUnitTests": "false",
+        "passUnitTests": "true"
+      }
+    }
+  ],
+  "metadata": {
+    "planName": "oracle-to-postgres",
+    "projectName": "HRWebApp",
+    "language": "java",
+    "createdAt": "2026-05-25T11:38:48Z",
+    "version": "1.0"
+  }
+}
